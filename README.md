@@ -1,43 +1,43 @@
 
+
 # Go + Gin + MongoDB + New Relic APM Example
 
-Bu proje, Go ile yazılmış, Gin framework'ü ve MongoDB kullanan, New Relic APM ile izlenebilir bir REST API örneğidir.
+This project is a REST API example written in Go, using the Gin framework and MongoDB, and is observable with New Relic APM.
 
-## Özellikler
-- **/api/data**: MongoDB'den item listeler (GET)
-- **/api/add**: MongoDB'ye yeni item ekler (POST, JSON: `{ "name": "değer" }`)
-- New Relic ile HTTP ve DB işlemleri izlenir
-- Başlangıçta koleksiyon boşsa otomatik örnek veri ekler
+## Features
+- **/api/data**: Lists items from MongoDB (GET)
+- **/api/add**: Adds a new item to MongoDB (POST, JSON: `{ "name": "value" }`)
+- HTTP and DB operations are tracked with New Relic
+- Automatically inserts a sample item if the collection is empty at startup
 
-## Kurulum
-1. **Go ve MongoDB kurulu olmalı**
-2. New Relic hesabınızdan bir lisans anahtarı alın
-3. `main.go` içindeki `ConfigLicense` kısmına anahtarı girin
-4. Bağımlılıkları yükleyin:
+## Setup
+1. **Go and MongoDB must be installed**
+2. Get a license key from your New Relic account
+3. Enter your license key in the `ConfigLicense` section in `main.go`
+4. Install dependencies:
    ```sh
    go mod tidy
    ```
-5. MongoDB başlatın:
+5. Start MongoDB:
    ```sh
    mongod
    ```
-6. Uygulamayı başlatın:
+6. Start the application:
    ```sh
    go run main.go
    ```
 
-## API Kullanımı
-- **GET /api/data**: Tüm item'ları listeler
-- **POST /api/add**: Yeni item ekler
+## API Usage
+- **GET /api/data**: Lists all items
+- **POST /api/add**: Adds a new item
   ```sh
-  curl -X POST -H "Content-Type: application/json" -d '{"name":"örnek"}' http://localhost:8080/api/add
+  curl -X POST -H "Content-Type: application/json" -d '{"name":"example"}' http://localhost:8080/api/add
   ```
 
 ## New Relic
-- Uygulama başlatıldığında New Relic'e otomatik olarak veri gönderir
-- DB işlemleri (find, insert) New Relic APM UI'da Datastore olarak görünür
+- When the application starts, it automatically sends data to New Relic
+- DB operations (find, insert) appear as Datastore in the New Relic APM UI
 
-## Notlar
-- `main.go` içindeki lisans anahtarınızı paylaşmayın!
-- Demo amaçlıdır, production için ek güvenlik ve yapılandırma gereklidir.
-# newrelic-integration
+## Notes
+- Do not share your license key in `main.go`!
+- This is for demo purposes; additional security and configuration are required for production.
