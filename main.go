@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"net/http"
+	"os"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -17,7 +18,7 @@ import (
 func main() {
 	app, err := newrelic.NewApplication(
 		newrelic.ConfigAppName("go-app"),
-		newrelic.ConfigLicense("xxxxxxxxxxxxxxxxxxxxxxx"),
+		newrelic.ConfigLicense(os.Getenv("NEW_RELIC_LICENSE_KEY")),
 		newrelic.ConfigAppLogForwardingEnabled(true),
 	)
 	if err != nil {
